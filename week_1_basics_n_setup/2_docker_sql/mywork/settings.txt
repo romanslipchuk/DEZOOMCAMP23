@@ -1,6 +1,7 @@
 docker run -it \
-  -e POSTGRESQL_USERNAME="root" \
-  -e POSTGRESQL_PASSWORD="root" \
-  -e POSTGRESQL_DATABASE="ny_taxi" \
-  -v /home/romasl/Documents/LEARN/DE/DEZOOMCAMP23/week_1_basics_n_setup/2_docker_sql/mywork/ny_taxi_postgres_data
+-e POSTGRESQL_USERNAME="root" \
+-e POSTGRESQL_PASSWORD="root" \
+-e POSTGRESQL_DATABASE="ny_taxi" \
+  -v $(pwd)/ny_taxi_postgres_data:/var/lib/postgresql/data \
+  -p 5432:5432
   postgres:13
