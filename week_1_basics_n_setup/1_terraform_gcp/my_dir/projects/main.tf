@@ -20,7 +20,7 @@ resource "google_storage_bucket" "data_lake_bucket" {
   location = var.region
 
   storage_class = var.storage_class
-  uniform_bucket_level_access = 
+  uniform_bucket_level_access = true
   
   versioning {
     enabled = true
