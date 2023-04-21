@@ -1,5 +1,5 @@
 terraform {
-  backend "lo" {}
+  backend "local" {}
   required_providers {
     google = {
       source = "hashicorp/google"
