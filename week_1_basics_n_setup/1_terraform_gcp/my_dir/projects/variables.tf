@@ -14,7 +14,7 @@ variable "region" {
 
 variable "storage_class" {
   description = "I'll check what type is more preferrable when get to this"
-  default = STANDARD
+  default = "STANDARD"
 }
 
 variable "BQ_DATASET" {
