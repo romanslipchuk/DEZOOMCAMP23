@@ -1,3 +1,9 @@
 DTC DE Course
 # Project ID
 dtc-de-course-384415
+
+
+terraform plan
+
+terraform init
+
