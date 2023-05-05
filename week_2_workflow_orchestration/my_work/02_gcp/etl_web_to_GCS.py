@@ -26,6 +26,7 @@ def clean(df=pd.DataFrame) -> pd.DataFrame:
     print(f"rows: {len(df)}")
     return df
 
+
 @task(log_prints=True)
 def write_local(df: pd.DataFrame, color: str, dataset_file: str) -> Path:
     """Write DataFrame out as parquet file"""
@@ -42,6 +43,7 @@ def write_gcs(path: Path) -> None:
         from_path=f"{path}",
         to_path=path
     )
+
 
 @flow()
 def etl_web_to_gcs() -> None:

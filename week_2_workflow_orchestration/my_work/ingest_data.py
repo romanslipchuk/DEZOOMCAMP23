@@ -4,14 +4,14 @@ import os
 # import argparse
 # from time import time
 import pandas as pd
-from sqlalchemy import create_engine
+# from sqlalchemy import create_engine
 from prefect import flow, task
 from prefect.tasks import task_input_hash
 from datetime import timedelta
 from prefect_sqlalchemy import SqlAlchemyConnector
 
 
-@task(log_prints=True, retries=3, cache_key_fn=task_input_hash, 
+@task(log_prints=True, retries=3, cache_key_fn=task_input_hash,
       cache_expiration=timedelta(days=1))
 def extract_data(url):
     if url.endswith('.csv.gz'):
@@ -32,16 +32,19 @@ def extract_data(url):
 
 @task(log_prints=True)
 def transform_data(df):
-    print(f"pre: missing passenger count: {df.passenger_count.isin([0]).sum()}")
+    print(f"pre: missing passenger count:\
+          {df.passenger_count.isin([0]).sum()}")
     df = df[df.passenger_count != 0]
-    print(f"pre: missing passenger count: {df.passenger_count.isin([0]).sum()}")
+    print(f"pre: missing passenger count:\
+          {df.passenger_count.isin([0]).sum()}")
     return df
 
 
 @task(log_prints=True, retries=1)
 def ingest_data(table_name, df):
-    
-    # the backup files are gzipped, and it's important to keep the correct extension
+
+    # the backup files are gzipped, and it's important to keep the correct
+    # extension
     # for pandas to be able to open the file
     connection_block = SqlAlchemyConnector.load("ingest-data-block")
 
